@@ -216,20 +216,28 @@ class Hero extends GameObject {
         }
       }
       if (myObj instanceof AR) {
-        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
           AssultRifle = true;
           myObj.hp = 0;
         }
       }
       if (myObj instanceof Sniper) {
-        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
           SniperRifle = true;
           myObj.hp = 0;
         }
       }
       if (myObj instanceof Shotgun) {
-        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
           ShotGUN = true;
+          myObj.hp = 0;
+        }
+      }
+      if (myObj instanceof noSpread) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
+          Pistol.inaccuracy -= 10;
+          AR.inaccuracy -= 10;
+          Shotgun.inaccuracy -= 10;
           myObj.hp = 0;
         }
       }

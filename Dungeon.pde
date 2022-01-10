@@ -128,6 +128,10 @@ void setup() {
     if (roomColor == blue) {
       myObjects.add(new Spawner(width/2, height/2, x, y));
     }
+    if (roomColor == yellow) {
+        myObjects.add(new noSpread(( width/2)-100, (height/2), 1, x, y, 25, "scope"));
+        myObjects.add(new DamageIncrease(( width/2)+100, (height/2), 1, x, y, 35, "+Damage"));
+    }
     x++;
     if (x == map.width) {
       x = 0;

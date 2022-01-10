@@ -1,4 +1,7 @@
 class Items extends GameObject {
+  
+  int c;
+  String n;
 
   Items() {
     loc = new PVector(width/2, height/2);
@@ -14,6 +17,15 @@ class Items extends GameObject {
     hp = hps;
     roomX = rx;
     roomY = ry;
+  }
+  Items(int x, int y, int hps, int rx, int ry, int cost, String name) {
+    loc = new PVector(x, y);
+    vel = new PVector(0, 0);
+    hp = hps;
+    roomX = rx;
+    roomY = ry;
+    c = cost;
+    n = name;
   }
 
   void show() {
