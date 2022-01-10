@@ -4,7 +4,7 @@ class GameObject {
   //commonly Used Variables
   PVector loc;
   PVector vel;
-  int hp;
+  int hp, roomX, roomY, size;
 
   GameObject() {
     //Variable initiation
@@ -13,6 +13,8 @@ class GameObject {
     hp = 1;
   }
   void show() {
+  }
+  void show1() {
   }
 
   void act() {

@@ -18,7 +18,6 @@ class Text {
   }
 
   void show() {
-
     //custom text display
     textFont (font);
     fill(c);

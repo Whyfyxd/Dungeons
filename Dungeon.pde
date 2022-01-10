@@ -2,7 +2,7 @@
 //DUNGEONS
 
 //keyboard input
-boolean w, a, s, d, space, pause;
+boolean w, a, s, d, space, pause, one, two, three, four, enemyKilled;
 
 //colors
 color blue     = #1EE7FB;
@@ -28,6 +28,9 @@ final int WIN = 4;
 //GIFs
 AnimatedGIF introGIF;
 AnimatedGIF heroGIF;
+AnimatedGIF heroGIFreversed;
+AnimatedGIF gun;
+AnimatedGIF gunReversed;
 
 //Images
 PImage map;
@@ -41,6 +44,7 @@ PFont font;
 ArrayList<GameObject> myObjects;
 ArrayList<DarknessCell> darkness;
 Hero myHero;
+Weapon Pistol, AR, Sniper, Shotgun;
 
 //mouse inputs
 boolean mouseReleased;
@@ -55,6 +59,7 @@ Button restartButton;
 Text introText;
 Text pauseText;
 Text winText;
+Text Gold;
 
 void setup() {
   fullScreen();
@@ -78,20 +83,63 @@ void setup() {
   myHero = new Hero();
   myObjects.add(myHero);
 
+
+
   //create darkness
-  darkness = new ArrayList<DarknessCell> (1000);
-  float size = 1000;
-  for (int i = 0; i <= 1920; i++) {
-    for (int k = 0; k <= 1080; k++) {
-      darkness.add(new DarknessCell(k, i, size));
+  darkness = new ArrayList<DarknessCell> ();
+  float size = 50;
+  int x = 0;
+  int y = 0;
+  while (y<height) {
+    darkness.add(new DarknessCell(x, y, size));
+    x += size;
+    if (x >= width) {
+      x=0;
+      y+=size;
+    }
+  }
+
+  //Loading enemies on the map
+  x = 0;
+  y = 0;
+  while (y < map.height) {
+    color roomColor = map.get(x, y);
+    if (roomColor == pink) {
+      int rando = (int) random(0, 3);
+      if (rando == 1) {
+        myObjects.add(new Follower(width/2, height/2, x, y));
+        myObjects.add(new Follower(width/2, height/2-100, x, y));
+        myObjects.add(new Follower(width/2, height/2+100, x, y));
+      }
+      if (rando == 2) {
+        myObjects.add(new Follower(width/2, height/2, x, y));
+        myObjects.add(new Follower(width/2, height/2-100, x, y));
+        myObjects.add(new Follower(width/2, height/2+100, x, y));
+      }
+      if (rando == 0) {
+      }
+    }
+    if (roomColor == purple) {
+      myObjects.add(new Turret(width/2+150, height/2-150, x, y));
+      myObjects.add(new Turret(width/2+150, height/2+150, x, y));
+      myObjects.add(new Turret(width/2-150, height/2-150, x, y));
+      myObjects.add(new Turret(width/2-150, height/2+150, x, y));
+    }
+    if (roomColor == blue) {
+      myObjects.add(new Spawner(width/2, height/2, x, y));
+    }
+    x++;
+    if (x == map.width) {
+      x = 0;
+      y++;
     }
   }
 
   //mode framework setup
-  //mode = INTRO;
+  mode = INTRO;
   //mode = GAMEOVER;
   //mode = WIN;
-  mode = GAME;
+  //mode = GAME;
 }
 
 void draw() {
@@ -118,6 +166,10 @@ void keyPressed() {
   if (key == 'd')    d = true;
   if (key == ' ')    space = true;
   if (key == 'p')    pause = true;
+  if (key == '1')    one = true;
+  if (key == '2')    two = true;
+  if (key == '3')    three = true;
+  if (key == '4')    four = true;
 }
 
 void keyReleased() {
@@ -128,4 +180,8 @@ void keyReleased() {
   if (key == 'd')   d = false;
   if (key == ' ')   space = false;
   if (key == 'p')   pause = false;
+  if (key == '1')   one = false;
+  if (key == '2')   two = false;
+  if (key == '3')   three = false;
+  if (key == '4')    four = false;
 }

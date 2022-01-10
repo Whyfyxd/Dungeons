@@ -7,12 +7,12 @@ class DarknessCell {
     size = s;
     x = _x;
     y = _y;
-    opacity = 0;
+    opacity = 100;
   }
-  
+
   void show() {
-    //fill(0);
-    //rect(x,y,size,size);
-    
+    noStroke();
+    fill(0, 0, 0, opacity);
+    rect(x, y, size, size);
   }
 }
