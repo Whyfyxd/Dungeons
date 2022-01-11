@@ -62,6 +62,10 @@ class Hero extends GameObject {
     //interaction code
     super.act();
     inv++;
+    
+    if (hp <= 0) {
+     mode = GAMEOVER; 
+    }
 
     //hero location updating code
     heroGIF.x = loc.x;
@@ -233,12 +237,33 @@ class Hero extends GameObject {
           myObj.hp = 0;
         }
       }
-      if (myObj instanceof noSpread) {
+      if (myObj instanceof noSpread && coins >= 25) {
         if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
           Pistol.inaccuracy -= 10;
           AR.inaccuracy -= 10;
           Shotgun.inaccuracy -= 10;
           myObj.hp = 0;
+          coins -= 25;
+        }
+      }
+      if (myObj instanceof DamageIncrease && coins >= 45) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
+          Pistol.damage += 3;
+          AR.damage += 5;
+          Shotgun.damage += 2;
+          Sniper.damage = Sniper.damage * 2;
+          myObj.hp = 0;
+          coins -= 45;
+        }
+      }
+      if (myObj instanceof BulletSpeed && coins >= 15) {
+        if (dist(loc.x, loc.y, myObj.loc.x, myObj.loc.y) <= size/2 + 25 && myObj.roomX == roomX && myObj.roomY == roomY) {
+          Pistol.bulletSpeed += 5;
+          AR.bulletSpeed += 7;
+          Shotgun.bulletSpeed += 5;
+          Sniper.bulletSpeed += 20;
+          myObj.hp = 0;
+          coins -= 15;
         }
       }
       i++;

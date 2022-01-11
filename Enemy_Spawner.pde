@@ -1,7 +1,7 @@
 class Spawner extends Enemy {
 
   Spawner(int x, int y, int rx, int ry) {
-    super (x, y, 100, rx, ry);
+    super (x, y, 50, rx, ry);
   }
   void show() {
     stroke(black);
@@ -16,7 +16,7 @@ class Spawner extends Enemy {
   void act() {
     super.act();
 
-    //chasing movement code
+    //spawning code
     if (shotTimer > 120) {
       myObjects.add(new Follower((int)super.loc.x, (int)super.loc.y, roomX, roomY));
       shotTimer=0;

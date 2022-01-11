@@ -1,7 +1,7 @@
 class Follower extends Enemy {
 
   Follower(int x, int y, int rx, int ry) {
-    super (x, y, 100, rx, ry);
+    super (x, y, 15, rx, ry);
   }
   void show() {
     stroke(black);

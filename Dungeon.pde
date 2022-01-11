@@ -14,7 +14,7 @@ color Dgray    = #1C0F00;
 color Dbrown   = #6B4F00;
 color brown    = #98761D;
 color Lbrown   = #B9A87D;
-color black    = #012201;
+color black    = #000000;
 color white    = #FFFFFF;
 
 //mode framework variables
@@ -117,6 +117,10 @@ void setup() {
         myObjects.add(new Follower(width/2, height/2+100, x, y));
       }
       if (rando == 0) {
+        myObjects.add(new Follower(width/2-100, height/2-100, x, y));
+        myObjects.add(new Follower(width/2+100, height/2-100, x, y));
+        myObjects.add(new Follower(width/2-100, height/2+100, x, y));
+        myObjects.add(new Follower(width/2+100, height/2+100, x, y));
       }
     }
     if (roomColor == purple) {
@@ -126,11 +130,16 @@ void setup() {
       myObjects.add(new Turret(width/2-150, height/2+150, x, y));
     }
     if (roomColor == blue) {
-      myObjects.add(new Spawner(width/2, height/2, x, y));
+      myObjects.add(new boss(width/2, height/2, x, y));
+     // myObjects.add(new Spawner(width/2, height/2, x, y));
+    }
+    if (roomColor == black) {
+      myObjects.add(new boss(width/2, height/2, x, y));
     }
     if (roomColor == yellow) {
         myObjects.add(new noSpread(( width/2)-100, (height/2), 1, x, y, 25, "scope"));
-        myObjects.add(new DamageIncrease(( width/2)+100, (height/2), 1, x, y, 35, "+Damage"));
+        myObjects.add(new DamageIncrease(( width/2)+100, (height/2), 1, x, y, 45, "+Damage"));
+        myObjects.add(new BulletSpeed(( width/2), (height/2), 1, x, y, 15, "+BSpeed"));
     }
     x++;
     if (x == map.width) {
