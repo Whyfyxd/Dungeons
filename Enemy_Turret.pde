@@ -1,7 +1,7 @@
 class Turret extends Enemy {
 
   Turret(int x, int y, int rx, int ry) {
-    super (x, y, 25, rx, ry);
+    super (x, y, 100, rx, ry);
   }
   void show() {
     stroke(black);

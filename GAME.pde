@@ -58,7 +58,7 @@ void drawRoom() {
   stroke(brown);
   fill(green);
   if (myHero.roomX == 4 && myHero.roomY == 4) {
-    fill(black);
+    fill(0);
   }
   rect(width/2, height/2, width*0.855, height*0.8);
 
